@@ -7,6 +7,8 @@
  * alterar o trecho v[j] < k para v[j] > k.
  *
  * O algoritmo é eficiente para ordenar poucos elementos.
+ * 
+ * Complexidade no pior caso: O(n^2)
  * */
 void insertion_sort(int n, int v[n]) {
 	int k, j;
