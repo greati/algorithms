@@ -2,6 +2,14 @@
 
 using namespace std;
 
+/* Função semelhante à Merge, usada no algoritmo MergeSort.
+ *
+ * Além de unir dois arranjos crescentes em um único crescente,
+ * conta o número de inversões.
+ *
+ * Worst-case: O(n)
+ * */
+
 long long countSplitMerge(int A[], int p, int q, int r) {
 	int nl = q - p + 1;
 	int nr = r - q;
@@ -24,6 +32,10 @@ long long countSplitMerge(int A[], int p, int q, int r) {
 	return count;
 }
 
+/* Semelhante ao MergeSort.
+ *
+ * Worst-case: O(n.lg(n))
+ * */
 long long count(int A[], int p, int r) {
 	long long c = 0;
 	if (p < r) {
