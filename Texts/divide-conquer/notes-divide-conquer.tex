@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{authblk}
+\usepackage{listings}
+
+
+\begin{document}
+
+\title{Divide and Conquer}
+\author{Vitor R. Greati\thanks{greati@ufrn.edu.br || vitorgreati.me}}
+\date{December, 2015}
+
+\maketitle
+
+The divide-and-conquer approach usually falls on recursive solutions, and is based on three main
+steps:
+\begin{description}
+	\item[Divide] Divide the problem into smaller instances of the same problem.
+	\item[Conquer] Solve each minor instance using a straightfoward manner.
+	\item[Combine] Combine those solutions to finally solve the original problem.
+\end{description}
+
+Given the recursive aspect, \textbf{recurrences} are the most common ways to define functions for
+counting the total of operations performed by the solutions. They simply use smaller inputs to describe
+a function, which means that there is not a direct definition, but a description based on known outputs
+of that same function.
+
+Three methods can be applied for solving recurrences:
+\begin{itemize}
+	\item{Substitution method}
+	\item{Recursion-tree method}
+	\item{Master method}
+\end{itemize}
+
+Sometimes, details are ignored when formulating recurrences. For example, on Merge Sort algorithm's,
+there are floor and ceiling functions involved, but they turn out to disappear when theta notation
+is applied. Otherwise, there are some cases where this simplification can't occur.
+
+\end{document}
