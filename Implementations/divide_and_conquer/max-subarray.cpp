@@ -1,3 +1,15 @@
+/**
+ * Given an array of integers, which is the subarray whose elements
+ * produce the greatest sum?
+ *
+ * This solves the problem of maximum-subarray, through divide-and-conquer
+ * approach, in Theta(n*log(n)).
+ *
+ * Author: Vitor Greati
+ * Date: 12/25/2015
+ * Inspired in: CLRS's Book
+ * */
+
 #include <iostream>
 #include <limits.h>
 
