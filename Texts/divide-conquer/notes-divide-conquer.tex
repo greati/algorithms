@@ -11,6 +11,8 @@
 
 \maketitle
 
+\section{Preliminaries}
+
 The divide-and-conquer approach usually falls on recursive solutions, and is based on three main
 steps:
 \begin{description}
@@ -34,5 +36,20 @@ Three methods can be applied for solving recurrences:
 Sometimes, details are ignored when formulating recurrences. For example, on Merge Sort algorithm's,
 there are floor and ceiling functions involved, but they turn out to disappear when theta notation
 is applied. Otherwise, there are some cases where this simplification can't occur.
+
+\section{Maximum-subarray problem}
+From Cormen: in a sequence of days, each day has a certain value, and a customer can buy and sell
+a thing each day according to that value. Which pair of days \{start, end\} would give the greatest profit at
+the end?
+
+For this problem, we can have a brute-force solution, testing all pairs \{begin, end\},
+giving $\Omega(n^2)$ of complexity.
+
+Running away from this approach, a better way of thinking this problem is keeping in hands the change
+between days, not the value at a day. With that, the problem becomes finding the greatest sum of
+contiguous elements. In other words, it's the \textbf{maximum subarray problem}. Still, there's a $\O(n^2)$ trivial solution,
+but a divide-and-conquer approach can produce a linear solution!
+
+
 
 \end{document}
