@@ -16,8 +16,8 @@ class BinarySearchTree {
 		TreeNode * root;
 
 		TreeNode * search_intern(const TKey &) const;
-		TreeNode * minimum_intern() const;
-		TreeNode * maximum_intern() const;
+		TreeNode * minimum_intern(TreeNode * rootNode) const;
+		TreeNode * maximum_intern(TreeNode * rootNode) const;
 		
 	public:
 		/**

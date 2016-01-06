@@ -5,7 +5,7 @@ template<typename TKey, typename TData, typename TLessComp>
 void BinarySearchTree<TKey, TData, TLessComp>::print_keys(TreeNode * root) const {
 	print_keys(root->left);
 	std::cout << root->key << std::endl;
-	print_keys(root->right) << std::endl;
+	print_keys(root->right);
 }
 
 
@@ -22,16 +22,16 @@ typename BinarySearchTree<TKey, TData, TLessComp>::TreeNode * BinarySearchTree<T
 }
 
 template<typename TKey, typename TData, typename TLessComp>
-typename BinarySearchTree<TKey, TData, TLessComp>::TreeNode * BinarySearchTree<TKey, TData, TLessComp>::minimum_intern() const {
-	TreeNode * nodeReceiver = root;
+typename BinarySearchTree<TKey, TData, TLessComp>::TreeNode * BinarySearchTree<TKey, TData, TLessComp>::minimum_intern(TreeNode * rootNode) const {
+	TreeNode * nodeReceiver = rootNode;
 	while (nodeReceiver->left != nullptr)
 		nodeReceiver = nodeReceiver->left;	
 	return nodeReceiver;
 }
 
 template<typename TKey, typename TData, typename TLessComp>
-typename BinarySearchTree<TKey, TData, TLessComp>::TreeNode * BinarySearchTree<TKey, TData, TLessComp>::maximum_intern() const {
-	TreeNode * nodeReceiver = root;
+typename BinarySearchTree<TKey, TData, TLessComp>::TreeNode * BinarySearchTree<TKey, TData, TLessComp>::maximum_intern(TreeNode * rootNode) const {
+	TreeNode * nodeReceiver = rootNode;
 	while (nodeReceiver->right != nullptr)
 		nodeReceiver = nodeReceiver->right;
 	return nodeReceiver;
@@ -47,12 +47,12 @@ TData * BinarySearchTree<TKey, TData, TLessComp>::search(const TKey & keyToFind)
 
 template<typename TKey, typename TData, typename TLessComp>
 TData * BinarySearchTree<TKey, TData, TLessComp>::minimum() const {
-	TreeNode * res = minimum_intern();
+	TreeNode * res = minimum_intern(root);
 	return (res != nullptr ? &(res->data) : nullptr);
 }
 
 template<typename TKey, typename TData, typename TLessComp>
 TData * BinarySearchTree<TKey, TData, TLessComp>::maximum() const {
-	BinarySearchTree<TKey, TData, TLessComp>::TreeNode * res = maximum_intern();
+	TreeNode * res = maximum_intern(root);
 	return (res != nullptr ? &(res->data) : nullptr);
 }
