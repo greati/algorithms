@@ -1,0 +1,28 @@
+BST's can serve as dictionaries and priority queues either.
+
+The operations take time proportional to the height of the tree. If it is a complete BST, operations take $\O(log (n))$.  If it is, however, a linear chain of $n$ nodes, in the worst-case, operations take $\O(n)$ time. The first time can be reached if the tree is built randomly.
+
+A BST is composed by \textbf{nodes}. A node is a structure containing:
+\begin{itemize}
+	\item Key: obvious.
+	\item Satellite data: the data to be stored.
+	\item Left: pointer to the left child.
+	\item Right: pointer to the right child.
+	\item P: pointer to the parent note.
+\end{itemize}
+
+If some of those items are inexistent, the attribute gets a NIL value.
+
+Important: the keys are sorted so that this property is satisfied
+
+Let x be a note in a binary search tree. If y is a node in the left subtree of x,
+then y.key \le x.key. If y is a node in the right subtree of x, then
+y.key \ge x.key.
+
+All nodes of a BST can be printed using a very simple recursive algorithm called Inorder Tree Walk.
+
+Searching for node with a certain key takes $\O(h)$, where $h$ is the height of the tree. It can be performed by a recursive approach or a iterative. The last one seems to be more
+efficient on most computers.
+
+Search for the node with the minimum key takes $\O(h)$ too, and consists only in diving through the left nodes of the tree. The same works for the maximum, but it's about searching for the deepest right node.
+
