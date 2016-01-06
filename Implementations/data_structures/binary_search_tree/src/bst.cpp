@@ -56,3 +56,43 @@ TData * BinarySearchTree<TKey, TData, TLessComp>::maximum() const {
 	TreeNode * res = maximum_intern(root);
 	return (res != nullptr ? &(res->data) : nullptr);
 }
+
+template<typename TKey, typename TData, typename TLessComp>
+typename BinarySearchTree<TKey, TData, TLessComp>::TreeNode * BinarySearchTree<TKey, TData, TLessComp>::sucessor_intern(TreeNode * ofNode) const {
+	if (ofNode->right != nullptr)
+		return minimum_intern(ofNode->right);
+	TreeNode * parentOfNode = ofNode->parent;
+	while (parentOfNode != nullptr and (not TLessComp(ofNode->key, parentOfNode->right->key) and not TLessComp(parentOfNode->right->key, ofNode->key))) {
+		ofNode = parentOfNode;
+		parentOfNode = ofNode->parent;
+	}
+	return parentOfNode;
+}
+
+template<typename TKey, typename TData, typename TLessComp>
+typename BinarySearchTree<TKey, TData, TLessComp>::TreeNode * BinarySearchTree<TKey, TData, TLessComp>::predecessor_intern(TreeNode * ofNode) const {
+	if (ofNode->left != nullptr)
+		return minimum_intern(ofNode->left);
+	TreeNode * parentOfNode = ofNode->parent;
+	while (parentOfNode != nullptr and (not TLessComp(ofNode->key, parentOfNode->left->key) and not TLessComp(parentOfNode->left->key, ofNode->key))) {
+		ofNode = parentOfNode;
+		parentOfNode = ofNode->parent;
+	}
+	return parentOfNode;
+}
+
+template<typename TKey, typename TData, typename TLessComp>
+TData * BinarySearchTree<TKey, TData, TLessComp>::sucessor(const TKey & ofNodeKey) const {
+	TreeNode * node = search_intern(ofNodeKey);
+	if (node != nullptr)
+		return sucessor_intern(node);
+	return nullptr;
+}
+
+template<typename TKey, typename TData, typename TLessComp>
+TData * BinarySearchTree<TKey, TData, TLessComp>::predecessor(const TKey & ofNodeKey) const {
+	TreeNode * node = search_intern(ofNodeKey);
+	if (node != nullptr)
+		return predecessor_intern(node);
+	return nullptr;
+}
