@@ -95,4 +95,28 @@ TData * BinarySearchTree<TKey, TData, TLessComp>::predecessor(const TKey & ofNod
 	if (node != nullptr)
 		return predecessor_intern(node);
 	return nullptr;
+
+}
+
+template<typename TKey, typename TData, typename TLessComp>
+TData * BinarySearchTree<TKey, TData, TLessComp>::insert(const TKey & newKey, TData newData) {
+	TreeNode * newNode {newKey, newData};		
+	TreeNode * leader = root;
+	TreeNode * trail = nullptr;
+	while (leader != nullptr) {
+		if (TLessComp(newKey, leader->key))
+			leader = leader->left;	
+		else if (TLessComp(leader->key, newKey))
+			leader = leader->right;	
+		trail = leader;
+	}
+	newNode->parent = trail;
+	if (trail == nullptr)
+		root = newNode;
+	else if(TLessComp(newKey, trail->key))
+		trail->left = newNode;	
+	else
+		trail->right = newNode;
+
+	return newNode->data;
 }
