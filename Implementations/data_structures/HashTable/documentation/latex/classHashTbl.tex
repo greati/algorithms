@@ -1,0 +1,248 @@
+\hypertarget{classHashTbl}{}\section{Hash\+Tbl$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$ Class Template Reference}
+\label{classHashTbl}\index{Hash\+Tbl$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$@{Hash\+Tbl$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$}}
+
+
+Class that represents a Hash Table.  
+
+
+
+
+{\ttfamily \#include $<$Hash\+Tbl.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classHashEntry}{Hash\+Entry}$<$ Key\+Type, Data\+Type $>$ {\bfseries Entry}\hypertarget{classHashTbl_af0d04a9ca350def9cb51b573d4dce7d5}{}\label{classHashTbl_af0d04a9ca350def9cb51b573d4dce7d5}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classHashTbl_aa0526288f0bdd55752dff108551a1689}{Hash\+Tbl} (unsigned int \+\_\+tbl\+Size=\hyperlink{classHashTbl_aeffa5b1a163fb6a09a18fd254a4d6dcf}{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE})
+\begin{DoxyCompactList}\small\item\em Simple constructor. \end{DoxyCompactList}\item 
+virtual \hyperlink{classHashTbl_a20c8c81ad708dba82b1c99cf8b59b97f}{$\sim$\+Hash\+Tbl} ()\hypertarget{classHashTbl_a20c8c81ad708dba82b1c99cf8b59b97f}{}\label{classHashTbl_a20c8c81ad708dba82b1c99cf8b59b97f}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+bool \hyperlink{classHashTbl_ac8afd3bd7f88a83f80b2c062ec709997}{insert} (const Key\+Type \&\+\_\+k, const Data\+Type \&\+\_\+d)  throw (std\+::bad\+\_\+alloc)
+\begin{DoxyCompactList}\small\item\em Inserts an information at the Hash Table. \end{DoxyCompactList}\item 
+bool \hyperlink{classHashTbl_a77c78b51065921e3faabd1be90937415}{remove} (const Key\+Type \&\+\_\+k)
+\begin{DoxyCompactList}\small\item\em Removes an information from the Hash Table. \end{DoxyCompactList}\item 
+bool \hyperlink{classHashTbl_a1288ed00486f5851d379d446e11a19a0}{retrieve} (const Key\+Type \&\+\_\+k, Data\+Type \&\+\_\+d) const 
+\begin{DoxyCompactList}\small\item\em Retrieves an information from Hash Table. \end{DoxyCompactList}\item 
+void \hyperlink{classHashTbl_af5643a408cf9e88efc2a136277aa6756}{clear} (void)\hypertarget{classHashTbl_af5643a408cf9e88efc2a136277aa6756}{}\label{classHashTbl_af5643a408cf9e88efc2a136277aa6756}
+
+\begin{DoxyCompactList}\small\item\em Clear Hash Table. \end{DoxyCompactList}\item 
+bool \hyperlink{classHashTbl_a4b08659c427a7d4237fabb7cd4cbc08e}{empty} (void) const 
+\begin{DoxyCompactList}\small\item\em Check if Hash Table is empty. \end{DoxyCompactList}\item 
+unsigned long int \hyperlink{classHashTbl_ac9c7304090665f19d299ab52a09a3128}{count} (void) const 
+\begin{DoxyCompactList}\small\item\em Counts number of elements in Hash Table. \end{DoxyCompactList}\item 
+void \hyperlink{classHashTbl_adddc2a770b4dafcb325b3c194fcdc530}{show\+Structure} (void) const \hypertarget{classHashTbl_adddc2a770b4dafcb325b3c194fcdc530}{}\label{classHashTbl_adddc2a770b4dafcb325b3c194fcdc530}
+
+\begin{DoxyCompactList}\small\item\em Show Hash Table structure as string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \hyperlink{classHashTbl_aa443e901cb35e81c1598644e41a10abb}{perform\+Hash} (const Key\+Type \&\+\_\+k) const 
+\begin{DoxyCompactList}\small\item\em Returns the corresponding hash for a given key. \end{DoxyCompactList}\item 
+bool \hyperlink{classHashTbl_aa388ae1ee1700c65b04e7b0f9df0fa66}{search} (const Key\+Type \&\+\_\+k, typename std\+::list$<$ \hyperlink{classHashEntry}{Entry} $>$\+::iterator \&it) const 
+\begin{DoxyCompactList}\small\item\em Searches for a key and find an iterator for it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{classHashTbl_a6335ac2d69675a22061cb6fde504f21c}{size}
+\item 
+unsigned int \hyperlink{classHashTbl_a23cbbbac6cc41d1d85c2261a854e67e7}{count\+Elements}
+\item 
+std\+::list$<$ \hyperlink{classHashEntry}{Entry} $>$ $\ast$ \hyperlink{classHashTbl_a692d3f189bb65ea4a1fff9ddc32674e4}{data\+Table}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const short \hyperlink{classHashTbl_aeffa5b1a163fb6a09a18fd254a4d6dcf}{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE} = 10
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Key\+Type, typename Data\+Type, typename Key\+Hash = std\+::hash$<$\+Key\+Type$>$, typename Key\+Equal = std\+::equal\+\_\+to$<$\+Key\+Type$>$$>$\\*
+class Hash\+Tbl$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$}
+
+Class that represents a Hash Table. 
+
+\begin{DoxyAuthor}{Authors}
+Vitor Greati, Vinicius Campos 
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Hash\+Tbl@{Hash\+Tbl}!Hash\+Tbl@{Hash\+Tbl}}
+\index{Hash\+Tbl@{Hash\+Tbl}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection[{Hash\+Tbl(unsigned int \+\_\+tbl\+Size=\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+Z\+E)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash , typename Key\+Equal $>$ {\bf Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::{\bf Hash\+Tbl} (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{\+\_\+tbl\+Size = {\ttfamily {\bf D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE}}}
+\end{DoxyParamCaption}
+)}\hypertarget{classHashTbl_aa0526288f0bdd55752dff108551a1689}{}\label{classHashTbl_aa0526288f0bdd55752dff108551a1689}
+
+
+Simple constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em \+\_\+tbl\+Size} & Hash\+Table size. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Hash\+Tbl@{Hash\+Tbl}!count@{count}}
+\index{count@{count}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection[{count(void) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash , typename Key\+Equal $>$ unsigned long int {\bf Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::count (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classHashTbl_ac9c7304090665f19d299ab52a09a3128}{}\label{classHashTbl_ac9c7304090665f19d299ab52a09a3128}
+
+
+Counts number of elements in Hash Table. 
+
+\begin{DoxyReturn}{Returns}
+the number of entries. 
+\end{DoxyReturn}
+\index{Hash\+Tbl@{Hash\+Tbl}!empty@{empty}}
+\index{empty@{empty}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection[{empty(void) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash , typename Key\+Equal $>$ bool {\bf Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::empty (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classHashTbl_a4b08659c427a7d4237fabb7cd4cbc08e}{}\label{classHashTbl_a4b08659c427a7d4237fabb7cd4cbc08e}
+
+
+Check if Hash Table is empty. 
+
+\begin{DoxyReturn}{Returns}
+true if it is empty, false otherwise. 
+\end{DoxyReturn}
+\index{Hash\+Tbl@{Hash\+Tbl}!insert@{insert}}
+\index{insert@{insert}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection[{insert(const Key\+Type \&\+\_\+k, const Data\+Type \&\+\_\+d)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash , typename Key\+Equal $>$ bool {\bf Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::insert (
+\begin{DoxyParamCaption}
+\item[{const Key\+Type \&}]{\+\_\+k, }
+\item[{const Data\+Type \&}]{\+\_\+d}
+\end{DoxyParamCaption}
+) throw  std\+::bad\+\_\+alloc) }\hypertarget{classHashTbl_ac8afd3bd7f88a83f80b2c062ec709997}{}\label{classHashTbl_ac8afd3bd7f88a83f80b2c062ec709997}
+
+
+Inserts an information at the Hash Table. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em \+\_\+k} & The key. \\
+\hline
+\mbox{\tt in}  & {\em \+\_\+d} & The information to be inserted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+false, if key exists and the information was overwritten, true otherwise. 
+\end{DoxyReturn}
+\index{Hash\+Tbl@{Hash\+Tbl}!perform\+Hash@{perform\+Hash}}
+\index{perform\+Hash@{perform\+Hash}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection[{perform\+Hash(const Key\+Type \&\+\_\+k) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash , typename Key\+Equal $>$ size\+\_\+t {\bf Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::perform\+Hash (
+\begin{DoxyParamCaption}
+\item[{const Key\+Type \&}]{\+\_\+k}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classHashTbl_aa443e901cb35e81c1598644e41a10abb}{}\label{classHashTbl_aa443e901cb35e81c1598644e41a10abb}
+
+
+Returns the corresponding hash for a given key. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em \+\_\+k} & The key. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding hash. 
+\end{DoxyReturn}
+\index{Hash\+Tbl@{Hash\+Tbl}!remove@{remove}}
+\index{remove@{remove}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection[{remove(const Key\+Type \&\+\_\+k)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash , typename Key\+Equal $>$ bool {\bf Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::remove (
+\begin{DoxyParamCaption}
+\item[{const Key\+Type \&}]{\+\_\+k}
+\end{DoxyParamCaption}
+)}\hypertarget{classHashTbl_a77c78b51065921e3faabd1be90937415}{}\label{classHashTbl_a77c78b51065921e3faabd1be90937415}
+
+
+Removes an information from the Hash Table. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em \+\_\+k} & The key. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true, if key exists; false otherwise. 
+\end{DoxyReturn}
+\index{Hash\+Tbl@{Hash\+Tbl}!retrieve@{retrieve}}
+\index{retrieve@{retrieve}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection[{retrieve(const Key\+Type \&\+\_\+k, Data\+Type \&\+\_\+d) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash , typename Key\+Equal $>$ bool {\bf Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::retrieve (
+\begin{DoxyParamCaption}
+\item[{const Key\+Type \&}]{\+\_\+k, }
+\item[{Data\+Type \&}]{\+\_\+d}
+\end{DoxyParamCaption}
+) const}\hypertarget{classHashTbl_a1288ed00486f5851d379d446e11a19a0}{}\label{classHashTbl_a1288ed00486f5851d379d446e11a19a0}
+
+
+Retrieves an information from Hash Table. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em \+\_\+k} & The key. \\
+\hline
+\mbox{\tt out}  & {\em \+\_\+d} & The information. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true, if key exists; false otherwise. 
+\end{DoxyReturn}
+\index{Hash\+Tbl@{Hash\+Tbl}!search@{search}}
+\index{search@{search}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection[{search(const Key\+Type \&\+\_\+k, typename std\+::list$<$ Entry $>$\+::iterator \&it) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash , typename Key\+Equal $>$ bool {\bf Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::search (
+\begin{DoxyParamCaption}
+\item[{const Key\+Type \&}]{\+\_\+k, }
+\item[{typename std\+::list$<$ {\bf Entry} $>$\+::iterator \&}]{it}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classHashTbl_aa388ae1ee1700c65b04e7b0f9df0fa66}{}\label{classHashTbl_aa388ae1ee1700c65b04e7b0f9df0fa66}
+
+
+Searches for a key and find an iterator for it. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em \+\_\+k} & The key. \\
+\hline
+\mbox{\tt out}  & {\em it} & Iterator for the element with that key. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if found, false otherwise. 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\index{Hash\+Tbl@{Hash\+Tbl}!count\+Elements@{count\+Elements}}
+\index{count\+Elements@{count\+Elements}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection[{count\+Elements}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash  = std\+::hash$<$\+Key\+Type$>$, typename Key\+Equal  = std\+::equal\+\_\+to$<$\+Key\+Type$>$$>$ unsigned int {\bf Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::count\+Elements\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classHashTbl_a23cbbbac6cc41d1d85c2261a854e67e7}{}\label{classHashTbl_a23cbbbac6cc41d1d85c2261a854e67e7}
+Number of elements. \index{Hash\+Tbl@{Hash\+Tbl}!data\+Table@{data\+Table}}
+\index{data\+Table@{data\+Table}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection[{data\+Table}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash  = std\+::hash$<$\+Key\+Type$>$, typename Key\+Equal  = std\+::equal\+\_\+to$<$\+Key\+Type$>$$>$ std\+::list$<${\bf Entry}$>$$\ast$ {\bf Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::data\+Table\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classHashTbl_a692d3f189bb65ea4a1fff9ddc32674e4}{}\label{classHashTbl_a692d3f189bb65ea4a1fff9ddc32674e4}
+The data. \index{Hash\+Tbl@{Hash\+Tbl}!D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE@{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE}}
+\index{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE@{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection[{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash  = std\+::hash$<$\+Key\+Type$>$, typename Key\+Equal  = std\+::equal\+\_\+to$<$\+Key\+Type$>$$>$ const short {\bf Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE = 10\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classHashTbl_aeffa5b1a163fb6a09a18fd254a4d6dcf}{}\label{classHashTbl_aeffa5b1a163fb6a09a18fd254a4d6dcf}
+Default size. \index{Hash\+Tbl@{Hash\+Tbl}!size@{size}}
+\index{size@{size}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash  = std\+::hash$<$\+Key\+Type$>$, typename Key\+Equal  = std\+::equal\+\_\+to$<$\+Key\+Type$>$$>$ unsigned int {\bf Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::size\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classHashTbl_a6335ac2d69675a22061cb6fde504f21c}{}\label{classHashTbl_a6335ac2d69675a22061cb6fde504f21c}
+Size of Hash Table. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Hash\+Tbl.\+h\item 
+src/Hash\+Table.\+cpp\end{DoxyCompactItemize}
