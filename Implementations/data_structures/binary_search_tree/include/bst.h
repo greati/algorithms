@@ -32,12 +32,24 @@ class BinarySearchTree {
 
 		TreeNode * root;
 
+		TLessComp comp;
+
+
+		/**
+		 * \brief Prints all keys ordered from a certain node.
+		 * \details Uses inorder-tree-walk algorithm to print
+		 * all keys ordered.
+		 * 
+		 * O(n)
+		 * */
+		void print_keys(TreeNode *) const;
+
 		TreeNode * search_intern(const TKey &) const;
 		TreeNode * minimum_intern(TreeNode * rootNode) const;
 		TreeNode * maximum_intern(TreeNode * rootNode) const;
 		TreeNode * sucessor_intern(TreeNode * ofNode) const;
 		TreeNode * predecessor_intern(TreeNode * ofNode) const;
-
+		
 		/**
 		 * \brief Cuts of the subtree rooted at n1, replacing it by 
 		 * subtree rooted at n2.
@@ -46,13 +58,19 @@ class BinarySearchTree {
 		
 	public:
 		/**
-		 * \brief Prints all keys ordered.
+		 * Constructor.
+		 * */
+		BinarySearchTree() : root {nullptr} {};
+
+		/**
+		 * \brief Prints all keys ordered from a certain node
+		 * using it's key as identifier.
 		 * \details Uses inorder-tree-walk algorithm to print
 		 * all keys ordered.
 		 * 
 		 * O(n)
 		 * */
-		void print_keys(TreeNode *) const;
+		void print_keys(const TKey & key) const;
 
 		/**
 		 * \brief Search for a node by its key.

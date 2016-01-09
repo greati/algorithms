@@ -35,6 +35,11 @@ It takes two nodes, $u$ and $v$. If $u$ is root, it replaces all the tree by the
 Every case cuts off $u$'s rooted subtree. It's about replacing, not interchanging.
 Having Transplant procedure, there are some cases to handle for deleting a node:
 \begin{itemize}
-	/item The node has no left child: transplant the subtree rooted at the right, replacing the node.
-	/item The node has no right child: transplant the subtree rooted at the left, replacing the node.
+	\item The node has no left child: transplant the subtree rooted at the right, replacing the node.
+	\item The node has no right child: transplant the subtree rooted at the left, replacing the node.
+	\item The node has left and right children: first, find the minimal node from the right, then,
+		\begin{itemize}
+			\item if the minimum is the node right child, replace the node by the minimum, leaving minimum's right child alone. 
+			\item
+		\end{itemize}
 \end{itemize}
