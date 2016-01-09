@@ -37,6 +37,12 @@ class BinarySearchTree {
 		TreeNode * maximum_intern(TreeNode * rootNode) const;
 		TreeNode * sucessor_intern(TreeNode * ofNode) const;
 		TreeNode * predecessor_intern(TreeNode * ofNode) const;
+
+		/**
+		 * \brief Cuts of the subtree rooted at n1, replacing it by 
+		 * subtree rooted at n2.
+		 * */
+		void transplant(TreeNode * n1, TreeNode * n2);
 		
 	public:
 		/**
@@ -87,6 +93,13 @@ class BinarySearchTree {
 		 * \return Pointer to the data of the new node.
 		 * */
 		TData * insert(const TKey & newKey, TData newData);
+
+		/**
+		 * \brief Deletes a node from the tree.
+		 * \details 
+		 * \return 
+		 * */
+		bool remove(const TKey & newKey);
 };
 
 #include "../src/bst.cpp"

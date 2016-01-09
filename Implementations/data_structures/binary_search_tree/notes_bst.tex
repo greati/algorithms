@@ -28,3 +28,13 @@ Search for the node with the minimum key takes $\O(h)$ too, and consists only in
 
 A sucessor of a node can be defined as the node with the smallest key greater than x.key. If x doesn't have a right subtree, so the sucessor is the lowest ancestor of x whose left child is also an ancestor of x.
 
+Insertion is just about walking the tree comparing keys.
+
+Deletion is trickier. It's necessary an auxiliar function, called Transplant, which replaces one subtree as a child of its parent with another subtree.
+It takes two nodes, $u$ and $v$. If $u$ is root, it replaces all the tree by the tree rooted in $v$.
+Every case cuts off $u$'s rooted subtree. It's about replacing, not interchanging.
+Having Transplant procedure, there are some cases to handle for deleting a node:
+\begin{itemize}
+	/item The node has no left child: transplant the subtree rooted at the right, replacing the node.
+	/item The node has no right child: transplant the subtree rooted at the left, replacing the node.
+\end{itemize}

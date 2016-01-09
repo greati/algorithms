@@ -120,3 +120,39 @@ TData * BinarySearchTree<TKey, TData, TLessComp>::insert(const TKey & newKey, TD
 
 	return newNode->data;
 }
+
+template<typename TKey, typename TData, typename TLessComp>
+void BinarySearchTree<TKey, TData, TLessComp>::transplant(TreeNode * n1, TreeNode * n2) {
+	if (n1->parent == nullptr)
+		root = n2;		
+	else if (n1->parent->left == n1)
+		n1->parent->left = n2;
+	else 
+		n1->parent->right = n2;
+	if (n2 != nullptr)
+		n2->parent = n1->parent;
+}
+
+template<typename TKey, typename TData, typename TLessComp>
+bool BinarySearchTree<TKey, TData, TLessComp>::remove(const TKey & keyToFind) {
+	TreeNode * nodeToDelete = search_intern(keyToFind);			
+	if (nodeToDelete != nullptr) {
+		if (nodeToDelete->left == nullptr)
+			transplant(nodeToDelete, nodeToDelete->right);	
+		else if (nodeToDelete->right == nullptr)
+			transplant(nodeToDelete, nodeToDelete->left);	
+		else {
+			TreeNode * nodeSucessor = sucessor_intern(nodeToDelete);	
+			if (nodeSucessor->parent != nodeToDelete) {
+				transplant(nodeSucessor, nodeSucessor->right);	
+				nodeSucessor->right = nodeToDelete->right;
+				nodeSucessor->right->parent = nodeSucessor;
+			}
+			transplant(nodeToDelete, nodeSucessor);
+			nodeSucessor->left = nodeToDelete->left;
+			nodeSucessor->left->parent = nodeSucessor;
+		}
+		return true;
+	}
+	return false;
+}
