@@ -94,7 +94,7 @@ template<typename TKey, typename TData, typename TLessComp>
 TData * BinarySearchTree<TKey, TData, TLessComp>::sucessor(const TKey & ofNodeKey) const {
 	TreeNode * node = search_intern(ofNodeKey);
 	if (node != nullptr)
-		return sucessor_intern(node);
+		return &((sucessor_intern(node))->data);
 	return nullptr;
 }
 
@@ -102,7 +102,7 @@ template<typename TKey, typename TData, typename TLessComp>
 TData * BinarySearchTree<TKey, TData, TLessComp>::predecessor(const TKey & ofNodeKey) const {
 	TreeNode * node = search_intern(ofNodeKey);
 	if (node != nullptr)
-		return predecessor_intern(node);
+		return &((predecessor_intern(node))->data);
 	return nullptr;
 
 }
@@ -151,7 +151,7 @@ bool BinarySearchTree<TKey, TData, TLessComp>::remove(const TKey & keyToFind) {
 		else if (nodeToDelete->right == nullptr)
 			transplant(nodeToDelete, nodeToDelete->left);	
 		else {
-			TreeNode * nodeSucessor = minimum_intern(nodeToDelete);	
+			TreeNode * nodeSucessor = minimum_intern(nodeToDelete->right);	
 			if (nodeSucessor->parent != nodeToDelete) {
 				transplant(nodeSucessor, nodeSucessor->right);	
 				nodeSucessor->right = nodeToDelete->right;
@@ -161,6 +161,7 @@ bool BinarySearchTree<TKey, TData, TLessComp>::remove(const TKey & keyToFind) {
 			nodeSucessor->left = nodeToDelete->left;
 			nodeSucessor->left->parent = nodeSucessor;
 		}
+		delete nodeToDelete;
 		return true;
 	}
 	return false;
