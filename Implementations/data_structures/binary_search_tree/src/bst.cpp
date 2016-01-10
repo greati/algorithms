@@ -3,6 +3,8 @@
 
 template<typename TKey, typename TData, typename TLessComp>
 void BinarySearchTree<TKey, TData, TLessComp>::print_keys(TreeNode * root) const {
+	if (root == nullptr)
+		return;
 	print_keys(root->left);
 	std::cout << root->key << std::endl;
 	print_keys(root->right);
@@ -19,7 +21,7 @@ void BinarySearchTree<TKey, TData, TLessComp>::print_keys(const TKey & key) cons
 template<typename TKey, typename TData, typename TLessComp>
 typename BinarySearchTree<TKey, TData, TLessComp>::TreeNode * BinarySearchTree<TKey, TData, TLessComp>::search_intern(const TKey & keyToFind) const {
 	TreeNode * it = root;
-	while (it != nullptr and not (comp(it->key, keyToFind) and comp(keyToFind, it->key))) {
+	while (it != nullptr and (comp(it->key, keyToFind) or comp(keyToFind, it->key))) {
 		if (comp(keyToFind, it->key))
 			it = it->left;
 		else 
@@ -46,7 +48,7 @@ typename BinarySearchTree<TKey, TData, TLessComp>::TreeNode * BinarySearchTree<T
 
 template<typename TKey, typename TData, typename TLessComp>
 TData * BinarySearchTree<TKey, TData, TLessComp>::search(const TKey & keyToFind) const {
-	TreeNode * res = search_intern(keyToFind, root);
+	TreeNode * res = search_intern(keyToFind);
 	if (res != nullptr)
 		return &(res->data);
 	return nullptr;
