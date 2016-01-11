@@ -1,0 +1,20 @@
+A Red-Black Tree is a binary search tree which keeps, in its nodes,
+an extra bit of information: the color of the node.
+
+The properties are the following:
+
+\begin{itemize}
+
+	\item Every node is either red or black.
+	\item The root is black.
+	\item Every leaf is black (NIL)
+	\item If a node is red, then both its children are black.
+	\item For each node, every path from the node to descendant 
+	leaf has the same number of black nodes.
+
+\end{itemize}
+
+The \textbf{black-height}, $bh(r)$, is defined to be the amount of black nodes in the path from
+the root $r$ to a leaf, not including $r$. 
+
+It's possible to prove that the height of a RBT is at most $2\log(n + 1)$.
