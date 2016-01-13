@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage{authblk}
+\usepackage{listings}
+
+
+\begin{document}
+
+\title{Dynamic Programming}
+\author{Vitor R. Greati\thanks{greati@ufrn.edu.br || vitorgreati.me}}
+\date{January, 2016}
+
+\maketitle
+
+\section{TopCoder explanations}
+
+We have the following problem:
+
+\emph{Given a list of $N$ coins, their values $\(V_1, V_2, \ldots, V_N)$, and the total sum $S$. Find the minimum number of coins the sum of which is $S$ (we can use as many coins of one type as we want), or report that it’s not possible to select coins in such a way that they sum up to $S$.}
+
+\subsection Finding a state
+
+A state is a way to describe a situation representing a sub-solution for the problem. For example,
+if we want to find a solution for sum $i \le S$, this would be a state for $i$. A smaller state
+than $i$ would be a solution for any $j < i$. For finding a state for $i$, it's necessary to
+find all states for all $j < i$. Once found for $i$, it's easy to find for $i + 1$, until
+$i + 1 = S$.
+
+
+
+
+\end{document}
