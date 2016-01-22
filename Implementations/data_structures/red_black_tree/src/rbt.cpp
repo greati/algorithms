@@ -46,3 +46,31 @@ void RedBlackTree<TKey, TData, TLessComp>::right_rotate(TreeNode * node) {
 	newRoot->left = node;
 	node->parent = newRoot;
 }
+
+template<typename TKey, typename TData, typename TLessComp>
+TData * RedBlackTree<TKey, TData, TLessComp>::insert(const TKey & newKey, TData newData) {
+	TreeNode * newNode = new TreeNode {newKey, newData, Color::RED};
+	TreeNode * trail = nil;
+	TreeNode * leader = root;	
+
+	while (leader != nil) {
+		trail = leader;
+		if (comp(newKey, leader->key))
+			leader = leader->left;
+		if (comp(leader->key, newKey))
+			leader = leader->right;
+	}
+
+	newNode->parent = trail;
+
+	if (root == nil)
+		root = newNode;
+	else if (comp(trail->key, newKey))
+		trail->right = newNode;
+	else if (comp(newKey, trail->key))
+		trail->left = newNode;
+	
+	fix_up(newNode);
+
+	return &(newNode->data);
+}	
