@@ -1,6 +1,15 @@
 #ifndef _BSTWP_
 #define _BSTWP_
 
+
+/**
+ * \brief Implements a Binary Search Tree without
+ * using a parent pointer.
+ *
+ * \author Vitor Greati
+ * \since 04/01/2016
+ * \version 1.0
+ **/
 template<typename TKey, typename TData, typename TComp>
 class BinarySearchTreeWP {
 
@@ -17,16 +26,22 @@ class BinarySearchTreeWP {
         };
     
         Node * root;
+   
+        TComp comp; 
     
+        Node * searchNode(const TKey & key, Node * parentReceiver = nullptr) const;
+
     public:
         
         BinarySearchTreeWP() : root {nullptr} {};
 
-        void insert(const TKey & newKey, TData & newData);
-        void remove(const TKey & keyToRemove);
-        void search(const TKey & keyToSearch);
+        TKey * insert(const TKey & newKey, TData & newData);
+        TData * remove(const TKey & keyToRemove);
+        TData * search(const TKey & keyToSearch) const;
 
 };
 
+// Sorry
+#include "../src/bst_wp.cpp"
 
 #endif
