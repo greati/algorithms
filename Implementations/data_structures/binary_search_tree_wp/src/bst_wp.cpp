@@ -1,20 +1,26 @@
+#include <iostream>
 #include "bst_wp.h"
 
 template<typename TKey, typename TData, typename TComp>
-typename BinarySearchTreeWP<TKey,TData,TComp>::Node * BinarySearchTreeWP<TKey,TData,TComp>::searchNode(const TKey & key, Node * parentReceiver) const {
+typename BinarySearchTreeWP<TKey,TData,TComp>::Node * BinarySearchTreeWP<TKey,TData,TComp>::searchNode(const TKey & key, Node * & parentReceiver) const {
 	Node * i { root };
-	while (i != nullptr and not (not comp(key, i->key) and not comp(i->key, key))) 
-		parentReceiver = i, i = comp(key, i->key) ?  i->left : i->right;
-	return i;
+	while (i != nullptr and not (not comp(key, i->key) and not comp(i->key, key))) { 
+		parentReceiver = i;
+        i = comp(key, i->key) ? i->left : i->right;
+	}
+    return i;
 }
 
 template<typename TKey, typename TData, typename TComp>
 TKey * BinarySearchTreeWP<TKey,TData,TComp>::insert(const TKey & newKey, TData & newData) {
-    Node * p, res;
-    res = searchNode(newKey, p);
+    Node * p = nullptr;
+    Node * res = searchNode(newKey, p);
     if (res == nullptr) {
         Node * n = new Node {newKey, newData};
-        (newKey > p->key) ? p->left = n : p.right = n;
+        if (p == nullptr)
+            root = n;
+        else 
+            (newKey > p->key) ? p->right = n : p->left = n;
         return &(n->key);
     }
     return nullptr;
@@ -36,6 +42,22 @@ typename BinarySearchTreeWP<TKey,TData,TComp>::Node * BinarySearchTreeWP<TKey,TD
     while (root->left != nullptr)
         root = root->left; 
     return root;
+}
+
+template<typename TKey, typename TData, typename TComp>
+void BinarySearchTreeWP<TKey,TData,TComp>::printKeys(Node * r) const {
+    if (r != nullptr) {
+        std::cout << r->key << std::endl;
+        if (r->left != nullptr)  
+            printKeys(r->left);
+        if (r->right != nullptr)
+            printKeys(r->right); 
+    }
+}
+
+template<typename TKey, typename TData, typename TComp>
+void BinarySearchTreeWP<TKey,TData,TComp>::printKeys() const {
+    printKeys(root); 
 }
 
 template<typename TKey, typename TData, typename TComp>

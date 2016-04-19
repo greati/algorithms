@@ -29,10 +29,8 @@ class BinarySearchTreeWP {
    
         TComp comp; 
     
-        Node * searchNode(const TKey & key, Node * parentReceiver = nullptr) const;
-
+        Node * searchNode(const TKey & key, Node * & parentReceiver = nullptr) const;
         Node * minNode (const Node * & root) const;
-
         void transplant(const Node * & from, const Node * & to);
 
     public:
@@ -42,7 +40,8 @@ class BinarySearchTreeWP {
         TKey * insert(const TKey & newKey, TData & newData);
         TData * remove(const TKey & keyToRemove);
         TData * search(const TKey & keyToSearch) const;
-
+        void printKeys(Node * r) const;
+        void printKeys() const;
 };
 
 // Sorry
