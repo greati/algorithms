@@ -27,18 +27,20 @@ TKey * BinarySearchTreeWP<TKey,TData,TComp>::insert(const TKey & newKey, TData &
 }
 
 template<typename TKey, typename TData, typename TComp>
-void BinarySearchTreeWP<TKey,TData,TComp>::transplant(const Node * & from, const Node * & to) {
+void BinarySearchTreeWP<TKey,TData,TComp>::transplant(Node * & from, Node * & to) {
     Node * p {nullptr};
-    searchNode(from->key, p); 
-    if (p->left == from)
-        p->left = to;
-    else if (p->right == from)
-        p->right = to;
+    searchNode(from->key, p);
+    if (p != nullptr) { 
+        if (p->left == from)
+            p->left = to;
+        else if (p->right == from)
+            p->right = to;
+    } else root = to;
 }
 
 
 template<typename TKey, typename TData, typename TComp>
-typename BinarySearchTreeWP<TKey,TData,TComp>::Node * BinarySearchTreeWP<TKey,TData,TComp>::minNode(const Node * & root) const {
+typename BinarySearchTreeWP<TKey,TData,TComp>::Node * BinarySearchTreeWP<TKey,TData,TComp>::minNode(Node * root) const {
     while (root->left != nullptr)
         root = root->left; 
     return root;

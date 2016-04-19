@@ -14,6 +14,8 @@ int main(void) {
     bst.insert(2, s1);
     bst.insert(6, s1);
     bst.printKeys();
+    bst.remove(1);
+    bst.printKeys();
     
     return 0;
 }

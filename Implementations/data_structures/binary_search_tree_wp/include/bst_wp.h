@@ -30,8 +30,8 @@ class BinarySearchTreeWP {
         TComp comp; 
     
         Node * searchNode(const TKey & key, Node * & parentReceiver = nullptr) const;
-        Node * minNode (const Node * & root) const;
-        void transplant(const Node * & from, const Node * & to);
+        Node * minNode (Node * root) const;
+        void transplant(Node * & from, Node * & to);
 
     public:
         
