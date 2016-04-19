@@ -33,7 +33,7 @@ void BinarySearchTreeWP<TKey,TData,TComp>::transplant(const Node * & from, const
     if (p->left == from)
         p->left = to;
     else if (p->right == from)
-        p->left = to;
+        p->right = to;
 }
 
 
