@@ -31,6 +31,8 @@ class BinarySearchTreeWP {
     
         Node * searchNode(const TKey & key, Node * parentReceiver = nullptr) const;
 
+        void transplant(const Node * & from, const Node * & to);
+
     public:
         
         BinarySearchTreeWP() : root {nullptr} {};
