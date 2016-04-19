@@ -30,6 +30,14 @@ void BinarySearchTreeWP<TKey,TData,TComp>::transplant(const Node * & from, const
         p->left = to;
 }
 
+
+template<typename TKey, typename TData, typename TComp>
+typename BinarySearchTreeWP<TKey,TData,TComp>::Node * BinarySearchTreeWP<TKey,TData,TComp>::minNode(const Node * & root) const {
+    while (root->left != nullptr)
+        root = root->left; 
+    return root;
+}
+
 template<typename TKey, typename TData, typename TComp>
 TData * BinarySearchTreeWP<TKey,TData,TComp>::remove(const TKey & keyToRemove) {
     Node * p = nullptr;
@@ -39,7 +47,13 @@ TData * BinarySearchTreeWP<TKey,TData,TComp>::remove(const TKey & keyToRemove) {
     else if (toRemove->right == nullptr)
         transplant(toRemove, toRemove->left);
     else {
-        //TODO 
+        Node * suc = minNode(toRemove->right);
+        if (toRemove->right != suc) {
+            transplant(toRemove, toRemove->right);
+            suc->right = toRemove->right;
+        }
+        transplant(toRemove, suc);
+        suc->left = toRemove->left;
     }
 }
 

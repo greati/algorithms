@@ -31,6 +31,8 @@ class BinarySearchTreeWP {
     
         Node * searchNode(const TKey & key, Node * parentReceiver = nullptr) const;
 
+        Node * minNode (const Node * & root) const;
+
         void transplant(const Node * & from, const Node * & to);
 
     public:
