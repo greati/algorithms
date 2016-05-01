@@ -9,12 +9,13 @@ int main(void) {
 
     std::string s1 = "Vitor";
 
-    bst.insert(1, s1);
-    bst.insert(3, s1);
     bst.insert(2, s1);
+    bst.insert(4, s1);
+    bst.insert(3, s1);
     bst.insert(6, s1);
+    bst.insert(1, s1);
     bst.printKeys();
-    bst.remove(1);
+    bst.remove(2);
     bst.printKeys();
     
     return 0;

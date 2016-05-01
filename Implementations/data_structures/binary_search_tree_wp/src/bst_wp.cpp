@@ -6,7 +6,7 @@ typename BinarySearchTreeWP<TKey,TData,TComp>::Node * BinarySearchTreeWP<TKey,TD
 	Node * i { root };
 	while (i != nullptr and not (not comp(key, i->key) and not comp(i->key, key))) { 
 		parentReceiver = i;
-        i = comp(key, i->key) ? i->left : i->right;
+        	i = comp(key, i->key) ? i->left : i->right;
 	}
     return i;
 }
@@ -72,12 +72,14 @@ TData * BinarySearchTreeWP<TKey,TData,TComp>::remove(const TKey & keyToRemove) {
         transplant(toRemove, toRemove->left);
     else {
         Node * suc = minNode(toRemove->right);
+	std::cout << "suc: " << suc->key << std::endl;
         if (toRemove->right != suc) {
-            transplant(toRemove, toRemove->right);
+            transplant(suc, suc->right);
             suc->right = toRemove->right;
         }
         transplant(toRemove, suc);
         suc->left = toRemove->left;
+	std::cout << "root : " << root->key << std::endl;
     }
 }
 
