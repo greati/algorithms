@@ -146,6 +146,83 @@ vector<int> topological_sort(vector<int> * graph, int v) {
 	return ordering;
 }
 
+/* Depth-first Search customized to compute the start and
+ * end times for each vertex in the search tree.
+ * 
+ **/
+void DFS_visit(vector<int> * graph, int vertex, bool * & vis, int & time, int * * & startend, list<int> & vertex_dec_finish) {
+	startend[vertex][0] = time++;
+	vis[vertex] = true;
+	for (int i = 0; i < graph[vertex].size(); ++i) {
+		if (!vis[graph[vertex][i]])
+			DFS_visit(graph, graph[vertex][i], vis, time, startend, vertex_dec_finish);
+	}
+	startend[vertex][1] = time++;
+	vertex_dec_finish.push_front(vertex);
+}
+
+/* Uses DFS to compute the start and finish time of each vertex in
+ * the DFS search tree.
+ *
+ **/
+int * * compute_start_finish_time(vector<int> * graph, int start, int v, list<int> & vertex_dec_finish) {
+	bool * vis = new bool[v + 1];
+	for (int i = 1; i <= v; ++i)
+		vis[i] = false;
+	int time = 1;
+	int * * startend = new int*[v + 1];
+	for (int i = 1; i <= v; ++i)
+		startend[i] = new int{0};
+	for (int i = 1; i <= v; ++i)
+		if (!vis[i])
+			DFS_visit(graph,i,vis,time,startend, vertex_dec_finish);
+	return startend;
+}
+
+/* Computes the transpose of the graph G = (V,E), defined as
+ * GT = (V, E'), where E' = {(v,u) | (u,v) \in E)}.
+ **/
+vector<int> * transpose(vector<int> * graph, int v) {
+	vector<int> * graphT = new vector<int>[v+1];
+	for (int i = 1; i <= v; ++i) {
+		for (int j = 0; j < graph[i].size(); ++j) {
+			graphT[graph[i][j]].push_back(i);
+		}
+	}
+	return graphT;
+}
+
+void DFS_assign(vector<int> * graph, int vertex, int root_comp, bool * & assigned, vector<int> * & components) {
+	assigned[vertex] = true;
+	components[root_comp].push_back(vertex);
+	for (int i = 0; i < graph[vertex].size(); ++i) {
+		if (!assigned[graph[vertex][i]]) {
+			DFS_assign(graph,graph[vertex][i],root_comp,assigned,components);
+		}
+	}
+}
+
+vector<int> * strongly_connected_components(vector<int> * graph, int v) {
+	// Compute finish time and get vertices by decreasing finish time
+	list<int> vertex_dec_finish;
+	int * * times = compute_start_finish_time(graph, 1, v, vertex_dec_finish);	
+	// Compute G's transpose
+	vector<int> * graphT = transpose(graph,v);
+	// Identify connected components
+	vector<int> * components = new vector<int>[v+1];
+	bool * assigned = new bool[v+1];
+	for (int i = 1; i <= v; ++i) 
+		assigned[i] = false;
+	for (int i = 1; i <= v; ++i) {
+		int cur_vertex = vertex_dec_finish.front();
+		vertex_dec_finish.pop_front();
+		if (!assigned[cur_vertex]) {
+			DFS_assign(graphT,cur_vertex,cur_vertex,assigned,components);
+		}
+	}
+	return components;	
+}
+
 int main(void) {
 	
 	vector<int> graph[100];
@@ -166,10 +243,26 @@ int main(void) {
 
 	//cout << cycle(graph, v) << endl;
 	//cout << connected(graph, v) << endl;
+	//vector<int> top_sort = topological_sort(graph,v);	
+	//for (int i = 0; i < top_sort.size(); ++i)
+	//	cout << top_sort[i] << endl;
 
-	vector<int> top_sort = topological_sort(graph,v);	
-	for (int i = 0; i < top_sort.size(); ++i)
-		cout << top_sort[i] << endl;
+	list<int> vertex_dec_finish;
+	int * * times = compute_start_finish_time(graph, 1, v, vertex_dec_finish);	
+	for (int i = 1; i <= v; ++i) {
+			cout << vertex_dec_finish.front() << endl;
+			vertex_dec_finish.pop_front();
+			cout << "v" << i << ":" << times[i][0] << "/" << times[i][1] << endl;
+	}
+
+	vector<int> * components = strongly_connected_components(graph,v);
+	for (int i = 1; i <= v; ++i) {
+		for (int j = 0; j < components[i].size(); ++j) {
+			cout << components[i][j] << " ";
+		}
+		cout << endl;
+	}
+	
 
 	return 0;
 }
