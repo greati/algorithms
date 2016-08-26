@@ -192,6 +192,10 @@ vector<int> * transpose(vector<int> * graph, int v) {
 	return graphT;
 }
 
+/* Procedure used in the SCC algoritm. Takes one vertice, one root
+ * and assign the vertex to the component with that root.
+ *
+*/
 void DFS_assign(vector<int> * graph, int vertex, int root_comp, bool * & assigned, vector<int> * & components) {
 	assigned[vertex] = true;
 	components[root_comp].push_back(vertex);
@@ -202,6 +206,9 @@ void DFS_assign(vector<int> * graph, int vertex, int root_comp, bool * & assigne
 	}
 }
 
+/* Find the connected components in a digraph.
+ *
+*/
 vector<int> * strongly_connected_components(vector<int> * graph, int v) {
 	// Compute finish time and get vertices by decreasing finish time
 	list<int> vertex_dec_finish;
